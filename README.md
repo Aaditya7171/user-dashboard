@@ -65,8 +65,5 @@ npm run build
 npm run preview
 
 
-## 🌐 Live Demo
-
-Check it out here: https://user-dashboard-uc.netlify.app/
 
 Made with ❤️ by Aditya Tomar
