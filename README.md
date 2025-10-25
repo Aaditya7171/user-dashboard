@@ -4,10 +4,10 @@ A **minimal user management dashboard** where you can **view, search, add, edit,
 
 > ⚡ Note: No pagination or infinite scroll — the dataset is intentionally small to prioritize **UX polish**.
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-purple?style=for-the-badge)](https://user-dashboard-uc.netlify.app/)
-[![React](https://img.shields.io/badge/React-17.0-blue?style=for-the-badge&logo=react)]
-[![Vite](https://img.shields.io/badge/Vite-4.0-brightgreen?style=for-the-badge&logo=vite)]
-[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.3-purple?style=for-the-badge&logo=tailwind-css)]
+![Live Demo](https://img.shields.io/badge/Live-Demo-purple?style=for-the-badge)(https://user-dashboard-uc.netlify.app/)
+![React](https://img.shields.io/badge/React-17.0-blue?style=for-the-badge&logo=react)
+![Vite](https://img.shields.io/badge/Vite-4.0-brightgreen?style=for-the-badge&logo=vite)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.3-purple?style=for-the-badge&logo=tailwind-css)
 
 ---
 
