@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import UserDetails from "./pages/UserDetails";
 import AddUser from "./pages/AddUser";
 import Header from "./components/Header";
+import { Toaster } from "sonner";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           Manage and view all users in one place
         </div>
       </div>
+      <Toaster richColors position="top-right" closeButton />
       <main className="max-w-6xl mx-auto p-4">
         <Routes>
           <Route path="/" element={<Home />} />
