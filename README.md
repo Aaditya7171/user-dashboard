@@ -66,7 +66,7 @@ npm run preview
 
 ```
 ## 📸 Screenshots
-![Home Page](./user-dashbpoard.png)
+![Home Page](./user-dashboard.png)
 
 
 Made with ❤️ by Aditya Tomar
