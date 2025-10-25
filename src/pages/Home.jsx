@@ -7,9 +7,8 @@ import EmptyState from "../components/EmptyState";
 
 function Home() {
     const [users, setUsers] = useState([]);
-    const [localUsers, setLocalUsers] = useState(() => {
-        return JSON.parse(localStorage.getItem("addedUsers")) || [];
-    })
+    const localUsers = JSON.parse(localStorage.getItem("addedUsers")) || [];
+    const editedUsers = JSON.parse(localStorage.getItem("editedUsers")) || {};
     const [q, setQ] = useState("");
     const [loading, setLoading] = useState(true);
 
@@ -20,7 +19,11 @@ function Home() {
         })
     }, []);
 
-    const all = [...localUsers, ...users];
+    const all = [...localUsers, ...users].map((u) => {
+        const key = u.id ?? u.tempId;
+        const edit = editedUsers[key] ?? editedUsers[String(key)] ?? editedUsers[Number(key)];
+        return edit ? { ...u, ...edit, company: edit.company || u.company } : u;
+    });
     const filtered = all.filter((u) =>
         `${u.name} ${u.email}`.toLowerCase().includes(q.toLowerCase())
     );
@@ -29,10 +32,10 @@ function Home() {
 
     return (
         <div>
-            <h1 className="text-x1 font-semibold mb-4 text-brand">Users</h1>
+            <h1 className="text-xl font-semibold mb-4 bg-gradient-to-r from-purple-500 to-purple-800 bg-clip-text text-transparent">Users</h1>
             <SearchBar value={q} onChange={setQ} />
             {filtered.length === 0 && <EmptyState text="No users found." />}
-            <div className="grid gap-4 sm:grid-cols-2 lg-grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {filtered.map((user) => (
                     <UserCard key={user.id || user.tempId} user={user} />
                 ))}
