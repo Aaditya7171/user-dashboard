@@ -64,6 +64,9 @@ npm run dev
 npm run build
 npm run preview
 
+```
+## 📸 Screenshots
+![Home Page](./user-dashbpoard.png)
 
 
 Made with ❤️ by Aditya Tomar
