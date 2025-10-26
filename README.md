@@ -10,6 +10,8 @@ A **minimal user management dashboard** where you can **view, search, add, edit,
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.3-purple?style=for-the-badge&logo=tailwind-css)
 
 ---
+## 🆕 Update: 
+-**Implemented Address input and integrated it into the User Details screen.**
 
 ## 🎨 Features
 
@@ -67,6 +69,8 @@ npm run preview
 ```
 ## 📸 Screenshots
 ![Home Page](./user-dashboard.png)
+![Home Page](./user-card.png)
+![Home Page](./add-user.png)
 
 
 Made with ❤️ by Aditya Tomar
