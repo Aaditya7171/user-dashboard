@@ -2,7 +2,7 @@
 
 A **minimal user management dashboard** where you can **view, search, add, edit, and inspect user details**. Built with a focus on **clean UI, theme toggle, subtle animations, and a purple brand style**.  
 
-> ⚡ Note: No pagination or infinite scroll — the dataset is intentionally small to prioritize **UX polish**.
+> ⚡ Note: No pagination or infinite scroll, the dataset is intentionally small to prioritize **UX polish**.
 
 [![Live Demo](https://img.shields.io/badge/Live-Demo-purple?style=for-the-badge)](https://user-dashboard-uc.netlify.app/)
 ![React](https://img.shields.io/badge/React-17.0-blue?style=for-the-badge&logo=react)
@@ -58,7 +58,7 @@ A **minimal user management dashboard** where you can **view, search, add, edit,
 ## ⚙ Setup (Local)
 
 ```bash
-# Node 18+ (I use Node 20)
+# Node 18+
 npm install
 npm run dev
 # Open the URL shown by Vite
