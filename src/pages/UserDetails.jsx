@@ -49,6 +49,24 @@ function UserDetails() {
                             <p className="text-gray-600 dark:text-gray-300"><span className="font-medium text-purple-700 dark:text-purple-300">Website:</span> {user.website || "—"}</p>
                         </div>
                     </div>
+
+                    {user.address && (
+                        <div className="mt-5 p-4 rounded-lg border border-purple-200/60 dark:border-purple-900/30 bg-purple-50/40 dark:bg-purple-950/10">
+                            <h3 className="text-sm font-semibold text-purple-700 dark:text-purple-300 mb-3">Address</h3>
+                            <div className="grid sm:grid-cols-2 gap-3 text-sm">
+                                <div className="space-y-1">
+                                    <p className="text-gray-700 dark:text-gray-300"><span className="font-medium">Street:</span> {user.address?.street || "—"}</p>
+                                    <p className="text-gray-700 dark:text-gray-300"><span className="font-medium">Suite:</span> {user.address?.suite || "—"}</p>
+                                    <p className="text-gray-700 dark:text-gray-300"><span className="font-medium">City:</span> {user.address?.city || "—"}</p>
+                                </div>
+                                <div className="space-y-1">
+                                    <p className="text-gray-700 dark:text-gray-300"><span className="font-medium">Zipcode:</span> {user.address?.zipcode || "—"}</p>
+                                    <p className="text-gray-700 dark:text-gray-300"><span className="font-medium">Latitude:</span> {user.address?.geo?.lat || "—"}</p>
+                                    <p className="text-gray-700 dark:text-gray-300"><span className="font-medium">Longitude:</span> {user.address?.geo?.lng || "—"}</p>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

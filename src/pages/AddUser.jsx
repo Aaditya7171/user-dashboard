@@ -17,6 +17,13 @@ export default function AddUser({ mode = "add" }) {
         phone: "",
         company: "",
         website: "",
+        // address fields (optional)
+        street: "",
+        suite: "",
+        city: "",
+        zipcode: "",
+        lat: "",
+        lng: "",
     });
 
     useEffect(() => {
@@ -32,6 +39,12 @@ export default function AddUser({ mode = "add" }) {
                 phone: merged.phone || "",
                 company: merged.company?.name || "",
                 website: merged.website || "",
+                street: merged.address?.street || "",
+                suite: merged.address?.suite || "",
+                city: merged.address?.city || "",
+                zipcode: merged.address?.zipcode || "",
+                lat: merged.address?.geo?.lat || "",
+                lng: merged.address?.geo?.lng || "",
             });
             setLoading(false);
             return;
@@ -54,12 +67,34 @@ export default function AddUser({ mode = "add" }) {
     };
 
     const submit = () => {
-        if (!form.name || !form.email) return toast.error("Fill required fields");
+        if (!form.name || !form.email || !form.phone) return toast.error("Name, Email, and Phone are required");
+
+        // build optional address only if any address field provided
+        const anyAddress = [form.street, form.suite, form.city, form.zipcode, form.lat, form.lng].some(Boolean);
+        const address = anyAddress
+            ? {
+                street: form.street || "",
+                suite: form.suite || "",
+                city: form.city || "",
+                zipcode: form.zipcode || "",
+                geo: {
+                  lat: form.lat || "",
+                  lng: form.lng || "",
+                },
+              }
+            : undefined;
 
         if (isEdit) {
             const key = id;
             const edited = JSON.parse(localStorage.getItem("editedUsers")) || {};
-            const payload = { ...form, company: { name: form.company } };
+            const payload = {
+              name: form.name,
+              email: form.email,
+              phone: form.phone,
+              company: form.company ? { name: form.company } : undefined,
+              website: form.website || undefined,
+              address,
+            };
             edited[key] = payload;
             localStorage.setItem("editedUsers", JSON.stringify(edited));
             toast.success("User updated");
@@ -69,8 +104,12 @@ export default function AddUser({ mode = "add" }) {
 
         const newUser = {
             tempId: Date.now(),
-            ...form,
-            company: { name: form.company },
+            name: form.name,
+            email: form.email,
+            phone: form.phone,
+            company: form.company ? { name: form.company } : undefined,
+            website: form.website || undefined,
+            address,
         };
 
         const prev = JSON.parse(localStorage.getItem("addedUsers")) || [];
@@ -92,18 +131,18 @@ export default function AddUser({ mode = "add" }) {
                 ) : (
                     <div className="space-y-3">
                         <div>
-                            <Label>Name</Label>
-                            <Input value={form.name} onChange={(e) => handleChange("name", e.target.value)} />
+                            <Label>Name <span className="text-red-500">*</span></Label>
+                            <Input required value={form.name} onChange={(e) => handleChange("name", e.target.value)} />
                         </div>
 
                         <div>
-                            <Label>Email</Label>
-                            <Input value={form.email} onChange={(e) => handleChange("email", e.target.value)} />
+                            <Label>Email <span className="text-red-500">*</span></Label>
+                            <Input type="email" required value={form.email} onChange={(e) => handleChange("email", e.target.value)} />
                         </div>
 
                         <div>
-                            <Label>Phone</Label>
-                            <Input value={form.phone} onChange={(e) => handleChange("phone", e.target.value)} />
+                            <Label>Phone <span className="text-red-500">*</span></Label>
+                            <Input required value={form.phone} onChange={(e) => handleChange("phone", e.target.value)} />
                         </div>
 
                         <div>
@@ -114,6 +153,36 @@ export default function AddUser({ mode = "add" }) {
                         <div>
                             <Label>Website</Label>
                             <Input value={form.website} onChange={(e) => handleChange("website", e.target.value)} />
+                        </div>
+
+                        <div className="pt-2">
+                            <p className="text-sm font-medium text-purple-700 dark:text-purple-300 mb-2">Address (optional)</p>
+                            <div className="grid sm:grid-cols-2 gap-3">
+                                <div>
+                                    <Label>Street</Label>
+                                    <Input value={form.street} onChange={(e) => handleChange("street", e.target.value)} />
+                                </div>
+                                <div>
+                                    <Label>Suite</Label>
+                                    <Input value={form.suite} onChange={(e) => handleChange("suite", e.target.value)} />
+                                </div>
+                                <div>
+                                    <Label>City</Label>
+                                    <Input value={form.city} onChange={(e) => handleChange("city", e.target.value)} />
+                                </div>
+                                <div>
+                                    <Label>Zipcode</Label>
+                                    <Input value={form.zipcode} onChange={(e) => handleChange("zipcode", e.target.value)} />
+                                </div>
+                                <div>
+                                    <Label>Latitude</Label>
+                                    <Input value={form.lat} onChange={(e) => handleChange("lat", e.target.value)} />
+                                </div>
+                                <div>
+                                    <Label>Longitude</Label>
+                                    <Input value={form.lng} onChange={(e) => handleChange("lng", e.target.value)} />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 )}
